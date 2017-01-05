@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+<body ng-app="orders" ng-controller="TestController as tst">
+    <div>test: {{2 + 4}}</div>
+    <input type="submit" value="Klik_{{tst.spr}}" ng-click="tst.spremeni()" />
+    <div ng-if="tst.spr === 2" ng-include="'includes/latest.html'">
+        pokazano
+        <div >
+
+        </div>
+
+    </div>
+</body>
+</html>

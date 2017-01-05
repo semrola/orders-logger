@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        function processResponse(content) {
+             alert(content);
+         }
+    </script>
+</head>
+<body>
+    <p>
+        <h2>Orders application header</h2>
+        <a href="/hello-world/" class="btn btn-primary" data-ajax="true" data-success="ajaxtest">Show Alert</a>
+    {% block content %}
+    {% endblock %}
+    </p>
+</body>
+</html>

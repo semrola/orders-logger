@@ -1,0 +1,27 @@
+{% if order %}
+    <table>
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Shipped</th>
+                <th>Received</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ order.price }}</td>
+                <td>{{ order.shipped }}</td>
+                <td>{{ order.received }}</td>
+                <td><table><tr>
+                    {% for item in order.item_set.all %}
+                        <td>
+                        <a href="{% url 'orders:item' item.id %}">{{ item.name }}</a>
+                        </td>
+                    {% endfor %}
+                    </tr></table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}

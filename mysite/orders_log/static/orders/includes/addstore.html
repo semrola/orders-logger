@@ -1,0 +1,10 @@
+<form name="newstore">
+    <table>
+        <caption>Add store</caption>
+        <tr><td>Name</td><td><input type="text" placeholder="Name of a store" ng-model="store.name" /></td></tr>
+        <tr><td>Homepage</td><td><input type="text" placeholder="Store's hompage URL" ng-model="store.homepage" /></td></tr>
+        <tr><td>Description</td>
+            <td><textarea placeholder="Working time, location, etc." ng-model="store.description"></textarea></td></tr>
+        <tr><td><input type="submit" value="Add store" ng-click="submitStore()"/></td></tr>
+    </table>
+</form>

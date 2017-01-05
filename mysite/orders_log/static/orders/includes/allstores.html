@@ -1,0 +1,17 @@
+<div>
+    <table ng-init="editing=false">
+        <caption>All stores</caption>
+        <tr><th>Name</th><th>Homepage</th><th>Description</th></tr>
+        <tr ng-repeat="s in allstores">
+            <td ng-if="!editing"><a href="{{s.homepage}}" target="_blank">{{s.name}}</a></td><td ng-if="editing"><input type="text" ng-model="s.name" /></td>
+            <td ng-if="!editing">{{s.homepage}}</td><td ng-if="editing"><input type="text" ng-model="s.homepage" /></td>
+            <td ng-if="!editing" style="white-space: pre-wrap;">{{s.description}}</td><td ng-if="editing"><textarea ng-model="s.description"></textarea></td>
+            <td><button ng-click="removeStore(s.id, $index)">Remove</button></td>
+            <td>
+                <button ng-show="!editing" ng-click="editing=true">Edit</button>
+                <button ng-show="editing" ng-click="editing=false; confirmEdit(s)">Confirm</button>
+                <button ng-show="editing" ng-click="editing=false">Cancel</button>
+            </td>
+        </tr>
+    </table>
+</div>

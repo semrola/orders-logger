@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="{% static "orders/default.css" %}" rel="stylesheet" type="text/css" media="all" />
+    <link href="{% static "orders/fonts.css" %}" rel="stylesheet" type="text/css" media="all" />
+    <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+</head>
+<body>
+    <div class="login" id="page">
+        <form method="post" action="login">
+            {% if error %}
+                <h3 class="error">{{ error }}</h3>
+            {% endif %}
+            <table>
+                {% csrf_token %}
+                {{ form.as_table }}
+                <tr><td id="submit" colspan="2"><input type="submit" value="Sign in"/></td></tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "orders/base.html" %}
+{% block content %}
+{% if latest_orders_list %}
+
+    <ul>
+    {% for order in latest_orders_list %}
+        <li><a href="/orders/{{ order.id }}/">{{ order }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No orders are available.</p>
+{% endif %}
+{% endblock %}

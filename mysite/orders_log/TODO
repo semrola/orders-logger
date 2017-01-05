@@ -1,0 +1,6 @@
+- Združi vsa naročila in dodajanje naročila
+- Popravi zavihke. Prenese naj se le stran odprtega zavihka. Ponovno naj se prenese, če smo dodali naročilo/trgovino ipd.
+- Pri dodajanju naročila naj se ne submita, če ni pravilno izpolnjen obrazec.
+    - Označitev polj, ki so nujna in niso bila izpolnjena.
+    - Ko se resetira vnos za item, se resetirajo tudi barve inputov.
+- Oblika.

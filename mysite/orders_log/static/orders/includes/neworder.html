@@ -1,0 +1,84 @@
+<h1>New order</h1>
+
+<div>
+    <form name="itemsForm" ng-controller="NewOrderController as neworder"
+          ng-submit="neworder.submitOrder()" novalidate>
+        <div>
+            <table>
+                <caption>Order Details</caption>
+                <tr>
+                    <td>Price</td><td><input type="number" min="0" ng-model="neworder.order.price"/></td>
+                </tr>
+                <tr>
+                    <td>Shipping From:</td>
+                    <td>Date <input type="date" ng-model="neworder.order.shfrom" /></td>
+                    <td>Days <input type="number" min="0" ng-model="neworder.order.daysfrom" /></td>
+                </tr>
+                <tr>
+                    <td>Shipping To:</td>
+                    <td>Date <input type="date" min="today" ng-model="neworder.order.shto" /></td>
+                    <td>Days <input type="number" min="0" ng-model="neworder.order.daysto" /></td>
+                </tr>
+                <tr>
+                    <td>Comment</td><td><textarea ng-model="neworder.order.comment" placeholder="Enter your comment here"></textarea></td>
+                </tr>
+                <tr><td>Store</td>
+                    <td><select ng-model="neworder.order.store" required>
+                        <option value="" disabled selected>Select store</option>
+                        <option ng-repeat="storeiter in neworder.stores" value="{{storeiter.id}}">{{storeiter.name}}</option>
+                    </select></td></tr>
+            </table>
+            <hr />
+            <table>
+                <caption>Add Item</caption>
+                <tr>
+                    <td>Name:</td><td><input type="text" ng-model="neworder.item.name" required/></td>
+                </tr>
+                <tr>
+                    <td>Price:</td><td><input type="number" min="0" ng-model="neworder.item.price"/></td>
+                </tr>
+                <tr>
+                    <td>Shipping From:</td>
+                    <td><input ng-model="neworder.item.differentfrom" ng-value="true" type="checkbox" />Different than order's</td>
+                    <td ng-show="neworder.item.differentfrom === true">Date <input type="date" ng-model="neworder.item.shfrom" /></td>
+                    <td ng-show="neworder.item.differentfrom === true">Days <input type="number" min="0" ng-model="neworder.item.daysfrom" /></td>
+                </tr>
+                <tr>
+                    <td>Shipping To:</td>
+                    <td><input ng-model="neworder.item.differentto" ng-value="true" type="checkbox" />Different than order's</td>
+                    <td ng-show="neworder.item.differentto === true">Date <input type="date" min="today" ng-model="neworder.item.shto" /></td>
+                    <td ng-show="neworder.item.differentto === true">Days <input type="number" min="0" ng-model="neworder.item.daysto" /></td>
+                </tr>
+                <tr>
+                    <td>URL</td><td><input type="url" ng-model="neworder.item.url" required /></td>
+                </tr>
+                <tr>
+                    <td>Comment</td><td><textarea ng-model="neworder.item.comment"></textarea></td>
+                </tr>
+                <tr>
+                    <td><input type="button" ng-click="neworder.addItem()" value="Add Item" /></td>
+                </tr>
+
+            </table>
+        </div>
+        <hr />
+        <table>
+            <caption>Current items</caption>
+            <tr><th>Name</th><th>Price</th><th>Shipping From</th><th>Shipping To</th><th>Days From</th><th>Days To</th>
+                <th>URL</th><th>Comment</th></tr>
+            <tr ng-repeat="item in neworder.items">
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.shfrom | myDateWHM}}</td>
+                <td>{{item.shto | myDateWHM}}</td>
+                <td>{{item.daysfrom}}</td>
+                <td>{{item.daysto}}</td>
+                <td>{{item.url}}</td>
+                <td>{{item.comment}}</td>
+                <td><input type="button" value="Remove" ng-click="neworder.removeItem($index)" /></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit Order" />
+    </form>
+
+</div>

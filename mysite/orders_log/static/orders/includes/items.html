@@ -1,0 +1,26 @@
+<tr class="item selected" ng-repeat="item in items_con.all_items">
+    <td class="first"></td>
+    <!--td class="first">&#10159;</td-->
+    <td>{{item.name}}</td>
+    <td>{{item.price | currency}}</td>
+    <td>{{item.ordered | myDate}}</td>
+
+    <td ng-if="item.shipped">{{item.shipped | myDateWHM}}</td>
+    <td ng-if="!item.shipped">
+        <button ng-click="items_con.confirm_items(item.id, 1);$event.stopPropagation()">Today</button>
+    </td>
+
+    <td ng-if="!item.received">{{order.ordered | getDateDiff: none:false}}</td>
+    <td ng-if="item.received">{{order.ordered | getDateDiff: item.received:true}}</td>
+
+    <td ng-if="item.received">{{item.received | myDateWHM}}</td>
+    <td ng-if="!item.received">
+        <button ng-click="items_con.confirm_items(item.id, 0);$event.stopPropagation()">Today</button>
+    </td>
+
+    <td class="shipping">{{item.shippingDateFrom | myDateWHM}}</td>
+    <td>{{item.shippingDateTo | myDateWHM}}</td>
+    <td></td>
+    <!--td>{{item.shippingDaysFrom | number}}</td>
+    <td>{{item.shippingDaysTo | number}}</td-->
+</tr>

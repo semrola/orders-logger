@@ -1,0 +1,22 @@
+{% if item %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>URL</th>
+                <th>Shipped</th>
+                <th>Received</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.url }}</td>
+                <td>{{ item.shipped }}</td>
+                <td>{{ item.received }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endif %}

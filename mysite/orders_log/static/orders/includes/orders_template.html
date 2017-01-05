@@ -1,0 +1,51 @@
+<table ng-controller="OrdersController as orderscon" class="orders">
+    <thead>
+        <tr class="upperth">
+            <th colspan="7"></th>
+            <th class="shipping" colspan="2">Shipping</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Order</th>
+            <th>Price</th>
+            <th>Ordered</th>
+            <th>Shipped</th>
+            <th>Diff</th>
+            <th>Received</th>
+            <th class="shipping">From</th>
+            <th>To</th>
+            <!--th>Days from</th>
+            <th>Days to</th-->
+            <th>Store</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat-start="order in orderscon.orders"
+            ng-class="{notreceived: !order.received, selected: orderscon.shows[$index]}"
+            ng-click="orderscon.show($index);items_con.get_item($index)" class="order">
+            <td class="first"></td>
+            <!--td class="first" ng-show="!orderscon.shows[$index]">&#10159;</td-->
+            <!--td class="first" ng-show="orderscon.shows[$index]">&#10155;</td-->
+            <td>{{order.name}}</td>
+            <td>{{order.price | currency:'€'}}</td>
+            <td>{{order.ordered | myDate}}</td>
+            <td ng-if="order.shipped">{{order.shipped | myDateWHM}}</td>
+            <td ng-if="!order.shipped">
+                <button ng-click="orderscon.confirm_goods(order.id, 1);$event.stopPropagation()">Today</button>
+            </td>
+            <td ng-if="!order.received">{{order.ordered | getDateDiff: none:false}}</td>
+            <td ng-if="order.received">{{order.ordered | getDateDiff: order.received:true}}</td>
+            <td ng-hide="!order.received">{{order.received | myDateWHM}}</td>
+                <td ng-show="!order.received">
+                    <button ng-click="orderscon.confirm_goods(order.id, 0);$event.stopPropagation()">Today</button>
+                </td>
+            <td class="shipping">{{order.shippingDateFrom | myDateWHM}}</td>
+            <td>{{order.shippingDateTo | myDateWHM}}</td>
+            <!--td>{{order.shippingDaysFrom | number}}</td>
+            <td>{{order.shippingDaysTo | number}}</td-->
+            <td>{{order.storename}}</td>
+        </tr>
+        <tr ng-repeat-end items orderid="order.id" ng-show="orderscon.shows[$parent.$index]"></tr>
+    </tbody>
+</table>
